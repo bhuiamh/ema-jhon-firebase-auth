@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./Login.css";
 
-function Login() {
+function SignUp() {
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
+  };
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
   };
 
   const handlePasswordChange = (event) => {
@@ -16,13 +20,15 @@ function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(`Username: ${username}, Password: ${password}`);
+    console.log(
+      `Username: ${username}, Email: ${email}, Password: ${password}`
+    );
   };
 
   return (
     <div className="form-container">
       <form className="login-form" onSubmit={handleSubmit}>
-        <h2 className="login-form__title">Log In</h2>
+        <h2 className="login-form__title">Sign Up</h2>
         <label className="login-form__label">
           Username
           <input
@@ -30,6 +36,15 @@ function Login() {
             type="text"
             value={username}
             onChange={handleUsernameChange}
+          />
+        </label>
+        <label className="login-form__label">
+          Email
+          <input
+            className="login-form__input"
+            type="email"
+            value={email}
+            onChange={handleEmailChange}
           />
         </label>
         <label className="login-form__label">
@@ -42,13 +57,13 @@ function Login() {
           />
         </label>
         <button className="login-form__button" type="submit">
-          Log In
+          Sign Up
         </button>
         <p style={{ color: "black" }}>
-          New to Ema-Jhon ?{" "}
+          Already have an account?{" "}
           <span>
-            <Link style={{ color: "blue" }} to="/register">
-              Sign Up
+            <Link style={{ color: "blue" }} to="/login">
+              Log In
             </Link>
           </span>
         </p>
@@ -57,4 +72,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default SignUp;
